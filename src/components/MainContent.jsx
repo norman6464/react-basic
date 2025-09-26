@@ -26,7 +26,15 @@ const chapters = [
 // コールバック関数なのを忘れない
 const chapterKeys = chapters.map(() => crypto.randomUUID());
 
-export function MainContent({ progress = 0 }) {
+export function MainContent({ progress, setProgress }) {
+  // 進捗率10%進める関数
+  const handleProgress = () => {
+    if(progress < 100) {
+      setProgress(progress + 10);
+    }
+  }
+
+
   return (
     <main>
       <section>
@@ -47,6 +55,7 @@ export function MainContent({ progress = 0 }) {
         {progress < 50 && (
           <p>これからですね!小さな積み重ねが大きな成果になりますよ。</p>
         )}
+        <button onClick={handleProgress}>10%進める</button>
       </section>
 
       <section>
